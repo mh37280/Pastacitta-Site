@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pastacitta | Halal Italian Kitchen</title>
+    <meta
+      name="description"
+      content="Pastacitta is a halal Italian kitchen serving pasta, pizza, schnitzel, risotto, and house desserts. Reserve a table, explore the full menu, and follow the restaurant online."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="home-page">
+    <main>
+      <section
+        class="hero-scroll"
+        id="home"
+        style="--hero-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80')"
+      >
+        <div class="hero-pin">
+          <div class="hero-media"></div>
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content-shell">
+            <header class="topbar hero-topbar">
+              <a class="brand brand-light" href="./index.html#home" aria-label="Pastacitta home">
+                <span class="brand-mark">PC</span>
+                <span>
+                  <strong>Pastacitta</strong>
+                  <small>Halal Italian Kitchen</small>
+                </span>
+              </a>
+
+              <nav class="topnav topnav-light" aria-label="Primary navigation">
+                <a href="./index.html#home" class="is-current">Home</a>
+                <a href="./menu.html">Menu</a>
+                <a href="./index.html#about">About</a>
+                <a href="./index.html#visit">Visit</a>
+                <a href="./index.html#contact">Contact</a>
+              </nav>
+            </header>
+
+            <div class="hero-text-stage">
+              <div class="hero-panel hero-panel-main" data-hero-panel>
+                <p class="eyebrow eyebrow-light">Fresh pasta, pizza, risotto, and halal comfort food</p>
+                <h1>Modern Italian comfort with a cinematic first impression.</h1>
+                <p class="hero-subtitle">
+                  Reserve, call, explore the full menu on its own page, and leave room for a Stripe-powered ordering flow in the next build.
+                </p>
+                <div class="cta-row">
+                  <a class="button button-primary" href="https://www.opentable.com/" target="_blank" rel="noreferrer">Reserve a Table</a>
+                  <a class="button button-outline" href="./menu.html">View Full Menu</a>
+                </div>
+              </div>
+            </div>
+
+            <a class="scroll-indicator" href="#intro" aria-label="Scroll to introduction">
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-panel" id="intro">
+        <div class="intro-wrap" data-reveal>
+          <p class="eyebrow">A destination</p>
+          <h2>Launch as a polished show site now, then expand the same build into reservations and ordering.</h2>
+          <p class="intro-copy">
+            This first version focuses on presentation and conversion: an immersive landing section, clear calls to reserve or call, and structured content that can evolve into a proper ordering system without switching platforms.
+          </p>
+          <div class="intro-actions">
+            <a class="button button-secondary" href="https://www.opentable.com/" target="_blank" rel="noreferrer">Make a Reservation</a>
+            <a class="button button-text" href="./menu.html">See Full Menu</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-shell">
+        <section class="feature-strip" aria-label="Key actions" data-reveal>
+          <article>
+            <p>Reservations</p>
+            <strong>Connect OpenTable, ResDiary, or a direct booking flow without redesigning the site</strong>
+          </article>
+          <article>
+            <p>Ordering</p>
+            <strong>Keep the menu structured now so Stripe checkout can be added cleanly</strong>
+          </article>
+          <article>
+            <p>Operations</p>
+            <strong>Phone, socials, and pickup actions stay prominent on mobile</strong>
+          </article>
+        </section>
+
+        <section class="section section-preview" id="menu-preview">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Full menu page</p>
+            <h2>The menu now has its own page with the same cinematic scroll entry.</h2>
+            <p>
+              Instead of squeezing everything onto the home page, the full menu gets section anchors, cleaner pricing layout,
+              and room to grow into ordering later.
+            </p>
+          </div>
+          <div class="menu-preview-grid" id="menu-preview-grid"></div>
+          <div class="section-cta" data-reveal>
+            <a class="button button-primary" href="./menu.html">Open Full Menu</a>
+          </div>
+        </section>
+
+        <section class="section two-column" id="about">
+          <div data-reveal>
+            <p class="eyebrow">About the concept</p>
+            <h2>Italian comfort food with halal options at the center of the brand.</h2>
+            <p>
+              This starter keeps the first version focused: strong visuals, clear menu access, fast contact actions,
+              and a reservation button that can point to any booking platform.
+            </p>
+            <p>
+              For phase two, the content structure can expand into item pages, cart logic, delivery zones, and Stripe payment.
+            </p>
+          </div>
+          <div class="readiness-card" data-reveal>
+            <p class="card-label">Build Direction</p>
+            <ul>
+              <li>Start as a coded site in Git, not WordPress</li>
+              <li>Keep menu items in structured JavaScript data</li>
+              <li>Add ordering with Stripe Checkout or a custom cart next</li>
+              <li>Swap reservation provider without redesigning the page</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section visit-grid" id="visit">
+          <article class="visit-card" data-reveal>
+            <p class="eyebrow">Visit</p>
+            <h2>Ready for your real business details</h2>
+            <p>Replace these placeholders when you have the final location, hours, and reservation link.</p>
+            <dl>
+              <div>
+                <dt>Address</dt>
+                <dd>123 Example Street, Your City</dd>
+              </div>
+              <div>
+                <dt>Hours</dt>
+                <dd>Mon-Sun, 11:00 AM - 10:00 PM</dd>
+              </div>
+              <div>
+                <dt>Reservations</dt>
+                <dd>OpenTable or direct booking link</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="visit-card accent-card" id="contact" data-reveal>
+            <p class="eyebrow">Contact</p>
+            <h2>Give customers the fastest next step</h2>
+            <div class="contact-actions">
+              <a class="button button-light" href="tel:+10000000000">Call +1 (000) 000-0000</a>
+              <a class="button button-ghost" href="https://instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+              <a class="button button-ghost" href="https://facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
+              <a class="button button-ghost" href="mailto:hello@pastacitta.com">Email</a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
