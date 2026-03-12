@@ -989,7 +989,7 @@ body.is-shifted .hero-panel-shift {
 
   .topbar-phone {
     font-size: 0.92rem;
-    align-self: flex-start;
+    align-self: center;
   }
 
   .hero-panel {
