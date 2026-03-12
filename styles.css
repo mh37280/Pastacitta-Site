@@ -581,7 +581,29 @@ body.is-shifted .hero-panel-shift {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
+}
+
+.visit-grid .visit-card {
+  height: 100%;
+}
+
+.map-section .section-heading {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.map-embed {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 440px;
 }
 
 .readiness-card,
@@ -619,6 +641,11 @@ body.is-shifted .hero-panel-shift {
 .accent-card {
   color: #fff;
   background: linear-gradient(150deg, #bb3f31, #7f241b);
+}
+
+.accent-card .contact-actions {
+  flex-direction: column;
+  margin-top: 22px;
 }
 
 .accent-card .eyebrow,
