@@ -1,27 +1,27 @@
 const menuPreviewSections = [
   {
     title: "Starters",
-    description: "Arancini, garlic bread, bruschetta, chips, and garlic prawns presented as a proper section instead of a menu poster."
+    description: "Arancini, garlic bread, bruschetta, garlic prawns, and wedges to kick off your meal."
   },
   {
-    title: "Pasta Sauces",
-    description: "Tomato, fresh cream, pink, and aglio e olio sections with regular and large pricing kept structured."
+    title: "Salads",
+    description: "Rocket, Caesar, Greek, Caprese, and more — crisp, fresh, and generous."
   },
   {
     title: "Pizza",
-    description: "From Margherita to Seafood, with descriptions ready to become selectable items in a future ordering flow."
+    description: "Thirteen wood-fired pizzas from a classic Margherita to Seafood, Peri Peri Chicken, and beyond."
+  },
+  {
+    title: "Pasta Sauces",
+    description: "Tomato, cream, pink, and aglio e olio — pick your base, then your pasta shape."
   },
   {
     title: "Risotto & Mains",
-    description: "Risotto, schnitzel, grilled dishes, and combos all broken into clean sections for easier browsing."
+    description: "Risotto, crumbed and grilled chicken and veal, served with chips or seasonal vegetables."
   },
   {
     title: "Desserts & Sides",
-    description: "Finish with house desserts and side sauces without losing visual consistency across the full page."
-  },
-  {
-    title: "Ordering Ready",
-    description: "This structure is already much closer to a future cart than a static image menu, which avoids rebuilding later."
+    description: "House-made tiramisu, chocolate mousse, and sauces to round off your meal perfectly."
   }
 ];
 
@@ -29,6 +29,7 @@ const fullMenuSections = [
   {
     id: "starters",
     title: "Starters",
+    eyebrow: "To start",
     items: [
       { name: "Arancini", description: "Ask for the flavour.", price: "$12" },
       { name: "Garlic Bread", description: "Classic oven-finished garlic bread.", price: "$5" },
@@ -44,6 +45,7 @@ const fullMenuSections = [
   {
     id: "salads",
     title: "Salads",
+    eyebrow: "Fresh & light",
     items: [
       {
         name: "Rocket Salad",
@@ -80,6 +82,7 @@ const fullMenuSections = [
   {
     id: "pizza",
     title: "Pizza",
+    eyebrow: "Wood-fired",
     items: [
       { name: "Cheesy Garlic Pizza", description: "Cheese, garlic, and oregano.", price: "$18" },
       { name: "Margherita", description: "Tomato sauce, mozzarella cheese, and herbs.", price: "$20" },
@@ -123,6 +126,7 @@ const fullMenuSections = [
   {
     id: "pasta-choice",
     title: "Pasta Sauce",
+    eyebrow: "Build your pasta",
     type: "pasta-choice",
     note: "Step 1: Pick your pasta.",
     options: [
@@ -139,6 +143,7 @@ const fullMenuSections = [
   {
     id: "tomato-sauce",
     title: "Tomato Sauce",
+    eyebrow: "Tomato base",
     items: [
       { name: "Napolitana", description: "Tomato, garlic, and basil.", price: { reg: "$20", lrg: "$28" } },
       { name: "Arrabiata", description: "Napolitana and chilli.", price: { reg: "$20", lrg: "$28" } },
@@ -153,6 +158,7 @@ const fullMenuSections = [
   {
     id: "fresh-cream-sauce",
     title: "Fresh Cream Sauce",
+    eyebrow: "Cream base",
     items: [
       { name: "Chicken Mushroom", description: "Chicken, mushroom, and shallots.", price: { reg: "$24", lrg: "$32" } },
       { name: "Boscaiola", description: "Beef rasher, mushrooms, and shallots.", price: { reg: "$24", lrg: "$32" } },
@@ -164,6 +170,7 @@ const fullMenuSections = [
   {
     id: "pink-sauce",
     title: "Pink Sauce",
+    eyebrow: "Pink sauce",
     items: [
       { name: "Rose", description: "Tomato, garlic, basil, and cream.", price: { reg: "$22", lrg: "$30" } },
       {
@@ -178,6 +185,7 @@ const fullMenuSections = [
   {
     id: "aglio-olio",
     title: "Aglio e Olio Sauces",
+    eyebrow: "Garlic & oil",
     items: [
       { name: "King Prawns Olio", description: "King prawns, garlic, chilli, and rocket.", price: { reg: "$28", lrg: "$36" } },
       { name: "Vegetarian Olio", description: "Mixed vegetables, garlic, chilli, and rocket.", price: { reg: "$23", lrg: "$30" } }
@@ -186,6 +194,7 @@ const fullMenuSections = [
   {
     id: "oven-baked-pasta",
     title: "Oven Baked Pasta",
+    eyebrow: "Oven baked",
     items: [
       { name: "Beef Lasagna", description: "Baked classic beef lasagna.", price: "$26" },
       { name: "Spinach Cannelloni", description: "Spinach-filled cannelloni.", price: "$22" }
@@ -194,6 +203,7 @@ const fullMenuSections = [
   {
     id: "risotto",
     title: "Risotto",
+    eyebrow: "Risotto",
     items: [
       { name: "Chicken Risotto", description: "Chicken, shallots, and pink sauce.", price: { reg: "$24", lrg: "$32" } },
       { name: "Porcini Mushroom", description: "Porcini mushroom and shallots.", price: { reg: "$24", lrg: "$32" } },
@@ -205,6 +215,7 @@ const fullMenuSections = [
   {
     id: "chicken-veal",
     title: "Chicken & Veal Dishes",
+    eyebrow: "Mains",
     note: "All served with vegetable or chips. Mashed potato +$2 extra.",
     type: "subsections",
     subsections: [
@@ -230,6 +241,7 @@ const fullMenuSections = [
   {
     id: "combo",
     title: "Combo",
+    eyebrow: "Value meals",
     type: "combo",
     items: [
       {
@@ -249,6 +261,7 @@ const fullMenuSections = [
   {
     id: "desserts",
     title: "Desserts",
+    eyebrow: "To finish",
     items: [
       { name: "Home Made Tiramisu", description: "House-made Italian dessert.", price: "$11" },
       { name: "Chocolate Mousse", description: "Rich chocolate finish.", price: "$11" }
@@ -257,6 +270,7 @@ const fullMenuSections = [
   {
     id: "sides",
     title: "Sides",
+    eyebrow: "On the side",
     items: [
       { name: "Mushroom Sauce", description: "Add-on sauce.", price: "$7" },
       { name: "Mashed Potatoes", description: "Creamy side dish.", price: "$8" },
@@ -360,7 +374,7 @@ const renderFullMenu = () => {
         return `
           <section class="menu-section" id="${sectionId}" data-menu-section data-reveal>
             <div class="menu-section-heading centered-left">
-              <p class="eyebrow">Menu Section</p>
+              <p class="eyebrow">${section.eyebrow || section.title}</p>
               <h2>${section.title}</h2>
               <p class="menu-section-note">${section.note}</p>
             </div>
@@ -384,7 +398,7 @@ const renderFullMenu = () => {
         return `
           <section class="menu-section" id="${sectionId}" data-menu-section data-reveal>
             <div class="menu-section-heading">
-              <p class="eyebrow">Menu Section</p>
+              <p class="eyebrow">${section.eyebrow || section.title}</p>
               <h2>${section.title}</h2>
               <p class="menu-section-note">${section.note}</p>
             </div>
@@ -408,7 +422,7 @@ const renderFullMenu = () => {
         return `
           <section class="menu-section" id="${sectionId}" data-menu-section data-reveal>
             <div class="menu-section-heading">
-              <p class="eyebrow">Menu Section</p>
+              <p class="eyebrow">${section.eyebrow || section.title}</p>
               <h2>${section.title}</h2>
             </div>
             <div class="menu-combo-grid">
