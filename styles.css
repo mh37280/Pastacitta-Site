@@ -761,6 +761,34 @@ body.is-shifted .hero-panel-shift {
   align-items: start;
 }
 
+.menu-entry-with-image {
+  grid-template-columns: 96px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-entry-thumb {
+  width: 96px;
+  height: 96px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(31, 37, 48, 0.06);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+  flex-shrink: 0;
+}
+
+.menu-entry-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 320ms ease;
+}
+
+.menu-entry-with-image:hover .menu-entry-thumb img {
+  transform: scale(1.05);
+}
+
 .menu-entry-copy {
   display: grid;
   gap: 10px;
@@ -1066,6 +1094,30 @@ body.is-shifted .hero-panel-shift {
 
   .menu-entry {
     grid-template-columns: 1fr;
+  }
+
+  .menu-entry-with-image {
+    grid-template-columns: 84px minmax(0, 1fr);
+    grid-template-areas:
+      "thumb copy"
+      "thumb price";
+    gap: 14px 16px;
+    align-items: start;
+  }
+
+  .menu-entry-with-image .menu-entry-thumb {
+    grid-area: thumb;
+    width: 84px;
+    height: 84px;
+  }
+
+  .menu-entry-with-image .menu-entry-copy {
+    grid-area: copy;
+  }
+
+  .menu-entry-with-image .menu-entry-price,
+  .menu-entry-with-image .menu-entry-price-stack {
+    grid-area: price;
   }
 
   .menu-entry-price,
