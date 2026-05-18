@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pastacitta Menu | Halal Italian Kitchen</title>
+    <title>Pastacitta Gallery | Halal Italian Kitchen</title>
     <meta
       name="description"
-      content="Browse the full Pastacitta menu with starters, salads, pizza, pasta sauces, risotto, halal mains, desserts, and sides."
+      content="A visual tour of the Pastacitta kitchen — pasta, pizza, salads, risotto, and house desserts, all halal-certified."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,12 +16,12 @@
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="menu-page">
+  <body class="gallery-page">
     <main>
       <section
         class="hero-scroll hero-scroll-menu"
-        id="menu-top"
-        style="--hero-image: url('./img/Backgroup-menu.png')"
+        id="gallery-top"
+        style="--hero-image: url('./img/Background-gal.png')"
       >
         <div class="hero-pin">
           <div class="hero-media"></div>
@@ -37,8 +37,8 @@
 
               <nav class="topnav topnav-light" aria-label="Primary navigation">
                 <a href="./index.html">Home</a>
-                <a href="./menu.html" class="is-current">Menu</a>
-                <a href="./gallery.html">Gallery</a>
+                <a href="./menu.html">Menu</a>
+                <a href="./gallery.html" class="is-current">Gallery</a>
                 <a href="./index.html#about">Location</a>
                 <a href="./index.html#visit">Visit</a>
                 <a href="./index.html#contact">Contact</a>
@@ -51,29 +51,23 @@
 
             <div class="hero-text-stage hero-text-stage-menu">
               <div class="hero-panel hero-panel-main" data-hero-panel>
-                <p class="eyebrow eyebrow-light">Pastacitta full menu</p>
-                <h1>Menu</h1>
+                <p class="eyebrow eyebrow-light">A look inside the kitchen</p>
+                <h1>Gallery</h1>
                 <p class="hero-subtitle hero-subtitle-narrow">
-                  Starters, salads, wood-fired pizza, handmade pasta, risotto, halal mains, combos, and house desserts &mdash; all under one roof.
+                  Every dish, plated and ready &mdash; from our wood-fired pizzas to handmade pasta, risotto, and house desserts.
                 </p>
               </div>
             </div>
 
-            <a class="scroll-indicator" href="#menu-intro" aria-label="Scroll to full menu">
+            <a class="scroll-indicator" href="#gallery-content" aria-label="Scroll to gallery">
               <span></span>
             </a>
           </div>
         </div>
       </section>
 
-      <div class="menu-sticky-bar">
-        <div class="page-shell">
-          <nav class="menu-category-nav" id="menu-category-nav" aria-label="Menu section navigation"></nav>
-        </div>
-      </div>
-
-      <div class="page-shell page-shell-menu">
-        <section class="menu-sections" id="menu-sections"></section>
+      <div class="page-shell page-shell-menu" id="gallery-content">
+        <section class="gallery-sections" id="gallery-sections"></section>
       </div>
     </main>
 

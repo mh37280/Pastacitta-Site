@@ -293,6 +293,7 @@ const fullMenuSections = [
 const previewGrid = document.querySelector("#menu-preview-grid");
 const menuSectionsRoot = document.querySelector("#menu-sections");
 const menuCategoryNav = document.querySelector("#menu-category-nav");
+const gallerySectionsRoot = document.querySelector("#gallery-sections");
 const heroSection = document.querySelector(".hero-scroll");
 const heroShiftPanel = document.querySelector(".hero-panel-shift");
 
@@ -337,7 +338,7 @@ const renderMenuItems = (items) => {
                     <article class="menu-entry${item.image ? " menu-entry-with-image" : ""}">
                       ${
                         item.image
-                          ? `<div class="menu-entry-thumb"><img src="${item.image}" alt="${item.name}" loading="lazy" /></div>`
+                          ? `<button type="button" class="menu-entry-thumb" data-lightbox data-lightbox-src="${item.image}" data-lightbox-caption="${item.name}" aria-label="Open photo of ${item.name}"><img src="${item.image}" alt="${item.name}" loading="lazy" /></button>`
                           : ""
                       }
                       <div class="menu-entry-copy">
@@ -472,6 +473,72 @@ const renderFullMenu = () => {
     .join("");
 };
 
+const collectGalleryItems = () => {
+  const groups = [];
+  fullMenuSections.forEach((section) => {
+    if (section.type === "pasta-choice" || section.type === "combo") {
+      return;
+    }
+    const groupItems = [];
+    if (section.type === "subsections") {
+      section.subsections.forEach((sub) => {
+        sub.items.forEach((item) => {
+          if (item.image) {
+            groupItems.push({ ...item, subtitle: sub.title });
+          }
+        });
+      });
+    } else {
+      section.items.forEach((item) => {
+        if (item.image) {
+          groupItems.push(item);
+        }
+      });
+    }
+    if (groupItems.length) {
+      groups.push({ title: section.title, eyebrow: section.eyebrow || section.title, items: groupItems });
+    }
+  });
+  return groups;
+};
+
+const renderGallery = () => {
+  if (!gallerySectionsRoot) {
+    return;
+  }
+
+  const groups = collectGalleryItems();
+  gallerySectionsRoot.innerHTML = groups
+    .map(
+      (group) => `
+        <section class="gallery-section" data-reveal>
+          <div class="gallery-section-heading">
+            <p class="eyebrow">${group.eyebrow}</p>
+            <h2>${group.title}</h2>
+          </div>
+          <div class="gallery-grid">
+            ${group.items
+              .map(
+                (item) => `
+                  <figure class="gallery-card">
+                    <button type="button" class="gallery-card-media" data-lightbox data-lightbox-src="${item.image}" data-lightbox-caption="${item.name}" aria-label="Open photo of ${item.name}">
+                      <img src="${item.image}" alt="${item.name}" loading="lazy" />
+                    </button>
+                    <figcaption>
+                      <strong>${item.name}</strong>
+                      ${item.subtitle ? `<span class="gallery-card-sub">${item.subtitle}</span>` : ""}
+                    </figcaption>
+                  </figure>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
+      `
+    )
+    .join("");
+};
+
 const renderCategoryNav = () => {
   if (!menuCategoryNav) {
     return;
@@ -554,12 +621,101 @@ const setupMenuSectionTracking = () => {
   sections.forEach((section) => observer.observe(section));
 };
 
+const setupLightbox = () => {
+  const triggers = Array.from(document.querySelectorAll("[data-lightbox]"));
+  if (!triggers.length) {
+    return;
+  }
+
+  const overlay = document.createElement("div");
+  overlay.className = "lightbox";
+  overlay.setAttribute("aria-hidden", "true");
+  overlay.innerHTML = `
+    <button type="button" class="lightbox-close" aria-label="Close photo">&times;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous photo">&#8249;</button>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="Next photo">&#8250;</button>
+    <figure class="lightbox-stage" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <img class="lightbox-image" alt="" />
+      <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+  `;
+  document.body.appendChild(overlay);
+
+  const imageEl = overlay.querySelector(".lightbox-image");
+  const captionEl = overlay.querySelector(".lightbox-caption");
+  const stageEl = overlay.querySelector(".lightbox-stage");
+  const prevBtn = overlay.querySelector(".lightbox-prev");
+  const nextBtn = overlay.querySelector(".lightbox-next");
+  const closeBtn = overlay.querySelector(".lightbox-close");
+
+  let currentIndex = 0;
+
+  const updateView = () => {
+    const trigger = triggers[currentIndex];
+    if (!trigger) return;
+    const src = trigger.dataset.lightboxSrc;
+    const caption = trigger.dataset.lightboxCaption || "";
+    imageEl.src = src;
+    imageEl.alt = caption;
+    captionEl.textContent = caption;
+  };
+
+  const open = (index) => {
+    currentIndex = index;
+    updateView();
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-lightbox-open");
+  };
+
+  const close = () => {
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-lightbox-open");
+  };
+
+  const step = (delta) => {
+    currentIndex = (currentIndex + delta + triggers.length) % triggers.length;
+    updateView();
+  };
+
+  triggers.forEach((trigger, index) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      open(index);
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  prevBtn.addEventListener("click", () => step(-1));
+  nextBtn.addEventListener("click", () => step(1));
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+      close();
+    }
+  });
+
+  stageEl.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!overlay.classList.contains("is-open")) return;
+    if (event.key === "Escape") close();
+    else if (event.key === "ArrowLeft") step(-1);
+    else if (event.key === "ArrowRight") step(1);
+  });
+};
+
 renderPreviewCards();
 renderFullMenu();
+renderGallery();
 renderCategoryNav();
 applyHeroProgress();
 setupRevealObserver();
 setupMenuSectionTracking();
+setupLightbox();
 
 window.addEventListener("scroll", applyHeroProgress, { passive: true });
 window.addEventListener("resize", applyHeroProgress);
