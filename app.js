@@ -290,10 +290,90 @@ const fullMenuSections = [
   }
 ];
 
+const cateringSections = [
+  {
+    id: "catering-salad",
+    title: "Salad",
+    eyebrow: "Trays for sharing",
+    items: [
+      { name: "Rocket Salad", price: "$75" },
+      { name: "Italian Salad", price: "$70" },
+      { name: "Greek Salad", price: "$75" },
+      { name: "Capress Salad", price: "$80" },
+      { name: "Caesar Salad", price: "$80" },
+      { name: "Chicken Caesar Salad", price: "$100" }
+    ]
+  },
+  {
+    id: "catering-red",
+    title: "Pasta Red Sauce",
+    eyebrow: "Tomato base",
+    items: [
+      { name: "Napolitana", price: "$75" },
+      { name: "Arrabiata", price: "$75" },
+      { name: "Bolognese", price: "$90" },
+      { name: "Siciliana", price: "$85" },
+      { name: "Beef Chorizo", price: "$90" },
+      { name: "Puttanesca", price: "$85" },
+      { name: "Lamb Ragu", price: "$90" },
+      { name: "Marinara", price: "$100" },
+      { name: "Gamberi", price: "$100" }
+    ]
+  },
+  {
+    id: "catering-white",
+    title: "Pasta White Sauce",
+    eyebrow: "Cream base",
+    items: [
+      { name: "Chicken Mushroom", price: "$90" },
+      { name: "Boscaiola", price: "$90" },
+      { name: "Carbonara", price: "$90" },
+      { name: "Formaggi Gorgonzola", price: "$90" },
+      { name: "Pesto", price: "$90" }
+    ]
+  },
+  {
+    id: "catering-pink",
+    title: "Pasta Pink Sauce",
+    eyebrow: "Pink sauce",
+    items: [
+      { name: "Rose", price: "$80" },
+      { name: "Pollo Fungi", price: "$90" },
+      { name: "Mare Monte", price: "$100" },
+      { name: "Salmon", price: "$100" },
+      { name: "Crab Meat", price: "$100" }
+    ]
+  },
+  {
+    id: "catering-olio",
+    title: "Pasta Aglio e Olio",
+    eyebrow: "Garlic & oil",
+    items: [
+      { name: "King Prawns", price: "$100" },
+      { name: "Vegetarian", price: "$85" }
+    ]
+  },
+  {
+    id: "catering-risotto",
+    title: "Risotto",
+    eyebrow: "Risotto trays",
+    items: [
+      { name: "Chicken Risotto", price: "$90" },
+      { name: "Porcini Mushroom Risotto", price: "$90" },
+      { name: "Vegetarian Risotto", price: "$90" },
+      { name: "Salmon Risotto", price: "$100" },
+      { name: "Prawns Risotto", price: "$100" },
+      { name: "Seafood Risotto", price: "$100" }
+    ]
+  }
+];
+
 const previewGrid = document.querySelector("#menu-preview-grid");
 const menuSectionsRoot = document.querySelector("#menu-sections");
 const menuCategoryNav = document.querySelector("#menu-category-nav");
 const gallerySectionsRoot = document.querySelector("#gallery-sections");
+const cateringSectionsRoot = document.querySelector("#catering-sections");
+const cateringCategoryNav = document.querySelector("#catering-category-nav");
 const heroSection = document.querySelector(".hero-scroll");
 const heroShiftPanel = document.querySelector(".hero-panel-shift");
 
@@ -539,6 +619,85 @@ const renderGallery = () => {
     .join("");
 };
 
+const renderCatering = () => {
+  if (!cateringSectionsRoot) {
+    return;
+  }
+
+  cateringSectionsRoot.innerHTML = cateringSections
+    .map(
+      (section) => `
+        <section class="catering-section" id="${section.id}" data-catering-section data-reveal>
+          <div class="catering-section-heading">
+            <p class="eyebrow">${section.eyebrow}</p>
+            <h2>${section.title}</h2>
+          </div>
+          <ul class="catering-list">
+            ${section.items
+              .map(
+                (item) => `
+                  <li class="catering-item">
+                    <span class="catering-item-name">${item.name}</span>
+                    <span class="catering-item-dots" aria-hidden="true"></span>
+                    <span class="catering-item-price">${item.price}</span>
+                  </li>
+                `
+              )
+              .join("")}
+          </ul>
+        </section>
+      `
+    )
+    .join("");
+};
+
+const renderCateringCategoryNav = () => {
+  if (!cateringCategoryNav) {
+    return;
+  }
+
+  cateringCategoryNav.innerHTML = cateringSections
+    .map(
+      (section, index) => `
+        <a class="menu-category-link${index === 0 ? " is-active" : ""}" href="#${section.id}" data-catering-link="${section.id}">
+          ${section.title}
+        </a>
+      `
+    )
+    .join("");
+};
+
+const setupCateringSectionTracking = () => {
+  const sections = document.querySelectorAll("[data-catering-section]");
+  const links = document.querySelectorAll("[data-catering-link]");
+
+  if (!sections.length || !links.length) {
+    return;
+  }
+
+  const activateLink = (id) => {
+    links.forEach((link) => link.classList.toggle("is-active", link.dataset.cateringLink === id));
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleSection = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+      if (visibleSection) {
+        activateLink(visibleSection.target.id);
+      }
+    },
+    {
+      threshold: [0.2, 0.4, 0.6],
+      rootMargin: "-20% 0px -55% 0px"
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+};
+
 const renderCategoryNav = () => {
   if (!menuCategoryNav) {
     return;
@@ -711,10 +870,13 @@ const setupLightbox = () => {
 renderPreviewCards();
 renderFullMenu();
 renderGallery();
+renderCatering();
 renderCategoryNav();
+renderCateringCategoryNav();
 applyHeroProgress();
 setupRevealObserver();
 setupMenuSectionTracking();
+setupCateringSectionTracking();
 setupLightbox();
 
 window.addEventListener("scroll", applyHeroProgress, { passive: true });
