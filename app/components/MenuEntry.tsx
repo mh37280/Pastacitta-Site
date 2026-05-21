@@ -9,11 +9,11 @@ function PriceTag({ price }: { price: PriceValue }) {
   return (
     <div className="menu-entry-price-stack">
       <span>
-        <small>Reg</small>
+        <small>Med</small>
         {price.reg}
       </span>
       <span>
-        <small>Lrg</small>
+        <small>Large</small>
         {price.lrg}
       </span>
     </div>
