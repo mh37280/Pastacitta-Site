@@ -1705,3 +1705,157 @@ body.is-lightbox-open {
     border-radius: 26px;
   }
 }
+
+/* ===== Order Online button ===== */
+.button-order {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #0a7a42 0%, #0e9956 50%, #0a7a42 100%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: 0;
+  box-shadow:
+    0 12px 26px rgba(10, 122, 66, 0.28),
+    0 0 0 0 rgba(10, 122, 66, 0.4);
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 280ms ease, background-position 420ms ease;
+  animation: order-pulse 2.6s ease-in-out infinite;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.button-order::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.32) 50%, transparent 75%);
+  transform: translateX(-110%);
+  transition: transform 720ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.button-order > * {
+  position: relative;
+  z-index: 2;
+}
+
+.button-order:hover {
+  transform: translateY(-2px);
+  background-position: 100% 50%;
+  box-shadow:
+    0 18px 34px rgba(10, 122, 66, 0.36),
+    0 0 0 4px rgba(10, 122, 66, 0.12);
+  animation-play-state: paused;
+}
+
+.button-order:hover::before {
+  transform: translateX(110%);
+}
+
+.button-order:active {
+  transform: translateY(0);
+}
+
+.button-order:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.button-order-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+@keyframes order-pulse {
+  0%, 100% {
+    box-shadow:
+      0 12px 26px rgba(10, 122, 66, 0.28),
+      0 0 0 0 rgba(10, 122, 66, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 14px 30px rgba(10, 122, 66, 0.34),
+      0 0 0 10px rgba(10, 122, 66, 0);
+  }
+}
+
+/* Nav variant — slightly more compact, sits in the topbar */
+.nav-order {
+  min-height: 46px;
+  padding: 0 20px;
+  font-size: 0.95rem;
+  animation-duration: 3.2s;
+}
+
+.nav-order .button-order-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.topbar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.button-text-light {
+  color: #fff;
+  opacity: 0.92;
+}
+
+.button-text-light:hover {
+  opacity: 1;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .button-order,
+  .button-order::before {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Compact on mobile so it still fits the topbar */
+@media (max-width: 880px) {
+  .nav-order {
+    padding: 0 14px;
+    font-size: 0.88rem;
+    min-height: 42px;
+  }
+  .nav-order .button-order-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar-right {
+    gap: 10px;
+  }
+  .nav-order span:not(.button-order-icon) {
+    /* hide the text label on very small screens, keep the icon */
+    display: none;
+  }
+  .nav-order {
+    padding: 0 12px;
+    min-height: 42px;
+    width: 42px;
+  }
+}

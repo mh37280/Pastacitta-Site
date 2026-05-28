@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import HeroParallax from "./components/HeroParallax";
 import RevealClient from "./components/Reveal";
+import { ORDER_ONLINE_URL } from "./components/TopNav";
 import { menuPreviewSections } from "@/data/menu";
 
 export const metadata: Metadata = {
@@ -29,10 +30,25 @@ export default function HomePage() {
             Handmade pasta, pizza, and slow-cooked classics — crafted with care, served with pride.
           </p>
           <div className="cta-row">
-            <a className="button button-primary" href="tel:+61286064896">
+            <a
+              className="button button-order"
+              href={ORDER_ONLINE_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="button-order-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 7h2l2 11h11l2-8H6" />
+                  <circle cx="9" cy="20" r="1.6" />
+                  <circle cx="17" cy="20" r="1.6" />
+                </svg>
+              </span>
+              Order Online
+            </a>
+            <a className="button button-outline" href="tel:+61286064896">
               Reserve a Table
             </a>
-            <Link className="button button-outline" href="/menu">
+            <Link className="button button-text button-text-light" href="/menu">
               View Full Menu
             </Link>
           </div>
@@ -48,6 +64,21 @@ export default function HomePage() {
               of an Italian kitchen.
             </p>
             <div className="intro-actions">
+              <a
+                className="button button-order"
+                href={ORDER_ONLINE_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="button-order-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 7h2l2 11h11l2-8H6" />
+                    <circle cx="9" cy="20" r="1.6" />
+                    <circle cx="17" cy="20" r="1.6" />
+                  </svg>
+                </span>
+                Order Online
+              </a>
               <a className="button button-secondary" href="tel:+61286064896">
                 Make a Reservation
               </a>

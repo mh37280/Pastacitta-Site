@@ -13,6 +13,8 @@ const PRIMARY_NAV: NavItem[] = [
   { href: "/#contact", label: "Contact" },
 ];
 
+export const ORDER_ONLINE_URL = "https://pastacitta.square.site/s/order";
+
 export type TopNavProps = {
   current: "home" | "menu" | "catering" | "gallery";
 };
@@ -49,9 +51,27 @@ export default function TopNav({ current }: TopNavProps) {
         })}
       </nav>
 
-      <a className="topbar-phone" href="tel:+61286064896" aria-label="Call (02) 8606 4896">
-        <span className="phone-green">(02)</span> 8606 <span className="phone-red">4896</span>
-      </a>
+      <div className="topbar-right">
+        <a
+          className="button button-order nav-order"
+          href={ORDER_ONLINE_URL}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Order online (opens in a new tab)"
+        >
+          <span className="button-order-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 7h2l2 11h11l2-8H6" />
+              <circle cx="9" cy="20" r="1.6" />
+              <circle cx="17" cy="20" r="1.6" />
+            </svg>
+          </span>
+          <span>Order Online</span>
+        </a>
+        <a className="topbar-phone" href="tel:+61286064896" aria-label="Call (02) 8606 4896">
+          <span className="phone-green">(02)</span> 8606 <span className="phone-red">4896</span>
+        </a>
+      </div>
     </header>
   );
 }
