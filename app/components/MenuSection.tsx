@@ -1,5 +1,7 @@
+import Image from "next/image";
 import type { MenuItem, MenuSection } from "@/data/menu";
 import MenuEntry from "./MenuEntry";
+import { LightboxTrigger } from "./Lightbox";
 
 function splitItems<T>(items: T[]): [T[], T[]] {
   const midpoint = Math.ceil(items.length / 2);
@@ -86,15 +88,36 @@ export default function MenuSectionView({ section, lightboxOffsets }: MenuSectio
           <h2>{section.title}</h2>
         </div>
         <div className="menu-combo-grid">
-          {section.items.map((item) => (
-            <article key={item.name} className={`combo-card combo-card-${item.tone}`}>
-              <div>
-                <h3>{item.name}</h3>
-                <p className="combo-price">{item.price}</p>
-                <p className="combo-note">{item.description}</p>
-              </div>
-            </article>
-          ))}
+          {section.items.map((item) => {
+            const lightboxIndex = lightboxOffsets.get(item);
+            return (
+              <article
+                key={item.name}
+                className={`combo-card combo-card-${item.tone}${item.image ? " combo-card-with-image" : ""}`}
+              >
+                {item.image && lightboxIndex !== undefined && (
+                  <LightboxTrigger
+                    index={lightboxIndex}
+                    caption={item.name}
+                    className="combo-card-media"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      sizes="160px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </LightboxTrigger>
+                )}
+                <div>
+                  <h3>{item.name}</h3>
+                  <p className="combo-price">{item.price}</p>
+                  {item.description && <p className="combo-note">{item.description}</p>}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
     );

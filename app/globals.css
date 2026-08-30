@@ -1045,6 +1045,23 @@ body.is-shifted .hero-panel-shift {
   text-align: center;
 }
 
+.combo-card-with-image {
+  gap: 18px;
+}
+
+.combo-card-media {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+  cursor: zoom-in;
+}
+
 .combo-card-green {
   background: radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 38%), linear-gradient(160deg, #0f6a43, #0a412a);
 }

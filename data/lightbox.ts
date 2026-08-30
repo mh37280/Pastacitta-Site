@@ -15,7 +15,7 @@ export function collectMenuLightbox(): {
   };
 
   for (const section of fullMenuSections) {
-    if (section.type === "pasta-choice" || section.type === "combo") continue;
+    if (section.type === "pasta-choice") continue;
     if (section.type === "subsections") {
       for (const sub of section.subsections) {
         for (const item of sub.items) push(item);
@@ -38,7 +38,7 @@ export function collectGalleryGroups(): {
   const items: LightboxItem[] = [];
 
   for (const section of fullMenuSections) {
-    if (section.type === "pasta-choice" || section.type === "combo") continue;
+    if (section.type === "pasta-choice") continue;
 
     const groupItems: GalleryEntry[] = [];
 

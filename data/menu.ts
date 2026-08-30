@@ -15,7 +15,8 @@ export type PastaOption = {
 export type ComboItem = {
   name: string;
   price: string;
-  description: string;
+  description?: string;
+  image?: string;
   tone: "green" | "red";
 };
 
@@ -67,6 +68,11 @@ export const menuPreviewSections = [
     title: "Salads",
     description:
       "Rocket, Caesar, Greek, Caprese, and more — crisp, fresh, and generous.",
+  },
+  {
+    title: "Burgers",
+    description:
+      "Aussie, crispy, Moody, and original chicken or beef burgers.",
   },
   {
     title: "Pizza",
@@ -148,6 +154,18 @@ export const fullMenuSections: MenuSection[] = [
         price: { reg: "$21", lrg: "$26" },
         image: "/img/Salads/Chicken%20Caesar%20Salaf.jpg",
       },
+    ],
+  },
+  {
+    id: "burgers",
+    title: "Burgers",
+    eyebrow: "Fresh off the grill",
+    items: [
+      { name: "Aussie Burger", price: "$14", image: "/img/Burgers/Aussie%20Burger.jpeg" },
+      { name: "Crispy Burger", price: "$14", image: "/img/Burgers/Crispy%20Burger.jpeg" },
+      { name: "Moody Burger", price: "$14", image: "/img/Burgers/Moody%20Burger.jpeg" },
+      { name: "Original Beef Burger", price: "$14", image: "/img/Burgers/Original%20Beef%20Burger.jpeg" },
+      { name: "Original Chicken Burger", price: "$14", image: "/img/Burgers/Original%20Chicken%20Burger.jpeg" },
     ],
   },
   {
@@ -297,6 +315,17 @@ export const fullMenuSections: MenuSection[] = [
         name: "La Citta Plate",
         price: "$31",
         description: "Rice, chicken grill, chips, and sauce on the side.",
+        tone: "red",
+      },
+      {
+        name: "Healthy Platters",
+        price: "$25",
+        tone: "green",
+      },
+      {
+        name: "La Citta Bowl",
+        price: "$18",
+        image: "/img/Combo/La%20Citta%20Bowl.webp",
         tone: "red",
       },
     ],
